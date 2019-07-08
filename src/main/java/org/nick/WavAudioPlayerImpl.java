@@ -2,12 +2,23 @@ package org.nick;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
+import java.net.URL;
 
-public class FromHttpSpeaker implements Speaker {
+public class WavAudioPlayerImpl implements AudioPlayer {
 
-    public void speak() {
+    private URL url;
+
+    public WavAudioPlayerImpl(URL url) {
+        this.url = url;
+    }
+
+    public WavAudioPlayerImpl() {
+        this.url = this.getClass().getClassLoader().getResource("test.wav");
+    }
+
+    public void play() {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("test.wav"));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
