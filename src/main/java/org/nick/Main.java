@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         ApplicationContext context = new ClassPathXmlApplicationContext("org.nick\\context.xml");
-        Speaker speaker = (FromHttpSpeakerImpl) context.getBean("fromHttpSpeaker");
+        ContextChoisableSpeaker speaker = context.getBean(ContextChoisableSpeaker.class);
         speaker.speak();
     }
 }
