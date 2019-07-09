@@ -1,5 +1,7 @@
 package org.nick;
 
+import java.net.URL;
+
 public interface AudioPlayer {
-    void play();
+    void play(URL url);
 }

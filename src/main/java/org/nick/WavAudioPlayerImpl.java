@@ -6,17 +6,10 @@ import java.net.URL;
 
 public class WavAudioPlayerImpl implements AudioPlayer {
 
-    private URL url;
-
-    public WavAudioPlayerImpl(URL url) {
-        this.url = url;
-    }
-
-    public WavAudioPlayerImpl() {
-        this.url = this.getClass().getClassLoader().getResource("test.wav");
-    }
-
-    public void play() {
+    public void play(URL url) {
+        if (url == null) {
+            url = this.getClass().getClassLoader().getResource("test.wav");
+        }
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
             Clip clip = AudioSystem.getClip();
